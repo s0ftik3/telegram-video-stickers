@@ -1,5 +1,7 @@
 # Видеостикеры Telegram
 
+[![preview](/preview.gif)](https://telegram.org/blog/video-stickers-better-reactions)
+
 ## Навигация
 
 -   [Вступление](#вступление)
