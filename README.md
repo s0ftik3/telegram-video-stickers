@@ -1,6 +1,10 @@
 # Видеостикеры Telegram
 
-[![preview](/preview.gif)](https://telegram.org/blog/video-stickers-better-reactions)
+<div align="center">
+    <a href="https://telegram.org/blog/video-stickers-better-reactions">
+        <img src="./preview.gif" alt="preview">
+    </a>
+</div>
 
 ## Навигация
 
@@ -8,6 +12,7 @@
 -   [Требования](#требования)
 -   [Создание .WEBM видеофайла](#создание-.WEBM-видеофайла)
     -   [Adobe Media Encoder](#adobe-media-encoder)
+    -   [Handbrake](#handbrake)
     -   [ffmpeg](#ffmpeg)
         -   [Установка](#установка)
         -   [Команды](#команды)
@@ -28,7 +33,6 @@
 -   Одна из сторон видео должна быть строго 512 пикселей — другая же сторона может быть и меньше.
 -   Длительность видео не должна привышать 3-х секунд.
 -   Количество кадров в секунду не должно привышать отметку в 30 FPS.
--   Видео должно иметь прозрачный слой (временное требование).
 -   Лучше использовать зацикленное видео.
 -   Размер видео не должен привышать 256 КБ.
 -   Видео должно быть в формате .WEBM, с использованием VP9 кодека.
@@ -36,7 +40,7 @@
 
 ## Создание .WEBM видеофайла
 
-Итак, на данный момент существует несколько способов создания видеофайла такого формата. Из-за обязательного прозрачного слоя, такие программы как [Handbrake](https://handbrake.fr/downloads.php) на данный момент не подойдут (в своей инструкции Telegram уточнили, что в скором обновлении это требование пропадёт). Здесь я опишу только те способы, который известны лично мне. Если Вы знаете какой-то ещё, дополняйте эту статью через PR.
+Итак, на данный момент существует несколько способов создания видеофайла такого формата. Здесь я опишу только те способы, который известны лично мне. Если Вы знаете какой-то ещё, дополняйте эту статью через PR.
 
 ### Adobe Media Encoder
 
@@ -56,6 +60,14 @@
 
 На macOS, Вам возможно потребуется открыть Настройки > Защита и безопасность, чтобы подтвердить установку.
 
+### Handbrake
+
+Handbrake — это приложение, которое может конвертировать Ваш видеофайл в другой формат.
+
+-   [Скачать Handbrake для Windows, macOS или Linux](https://handbrake.fr/downloads.php)
+
+После установки (Windows) импортируйте Ваш видеофайл следуя инструкциям. Обрежьте видео до 3-ех секунд и поставьте VP9 кодек. Если Ваше видео не соответствует размеру 512 на 512 пикселей, то Вам следует сначала его обрезать. Более подробный гайд по этой программе будет чуть позже.
+
 ### FFmpeg
 
 FFmpeg — это утилита, с помощью которой можно легко конвертировать аудио- и видеофайлы в нужный Вам формат. Вообще, эта утилита может много чего, но нам не понадобиться весь её спектр возможностей.
@@ -64,37 +76,75 @@ FFmpeg — это утилита, с помощью которой можно л
 
 Открываем [эту ссылку](https://ffmpeg.org/download.html) и скачиваем нужную Вам версию. В моём случае — версия для Windows (далее всё будет про установку на Windows. Если у Вас macOS или другая операционная система, и Вы можете составить установочный гайд — прошу во вкладку для PR).
 
-[![ffmpeg](/images/ffmpeg-1.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-1.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 В открывшемся окне выбираем ссылку, которая показана на скриншоте ниже (должна содержать `full`).
 
-[![ffmpeg](/images/ffmpeg-2.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-2.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 Далее загруженный архив распаковываем в папку, даём ей имя FFmpeg, чтобы не запутаться. Переносим эту папку в корень диска C (или любой другой литерал, диск должен быть тот, на который Вы устанавливали Windows).
 
-[![ffmpeg](/images/ffmpeg-3.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-3.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 Затем открываем поиск (кнопка Windows + S) и вводим `Изменение системных переменных среды`.
 
-[![ffmpeg](/images/ffmpeg-4.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-4.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 В открывшемся окне нажимаем на кнопку `Переменные среды`.
 
-[![ffmpeg](/images/ffmpeg-5.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-5.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 Находим переменную `path`, жмём на неё и изменяем.
 
-[![ffmpeg](/images/ffmpeg-6.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-6.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 В пустой ячейке вписываем путь к FFmpeg. Не забываем указать, что путь должен быть к папке bin внутри FFmpeg.
 
-[![ffmpeg](/images/ffmpeg-7.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-7.png" alt="ffmpeg"></a>
+</details>
+
+<br>
 
 Сохраняем всё и прожимаем "Ок".
 
 Далее проверяем, корректно ли мы всё сделали. Открываем командную строку (`кнопка Windows + R`, вписываем `cmd`, жмём `ОК`). Пишем следующую команду: `ffmpeg -version`. Если ответ похож на тот, что показан ниже — Вы сделали всё правильно.
 
-[![ffmpeg](/images/ffmpeg-8.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-8.png" alt="ffmpeg"></a>
+</details>
 
 #### Команды.
 
@@ -106,9 +156,18 @@ FFmpeg — это утилита, с помощью которой можно л
 ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 2.99 -vf crop=w='min(iw\,ih)':h='min(iw\,ih)',scale=512:512,setsar=1 -an output.webm
 ```
 
-[![ffmpeg](/images/ffmpeg-9.png)](https://ffmpeg.org/download.html)
+<details>
+    <summary>Открыть скриншот</summary>
+    <a href="https://ffmpeg.org/download.html"><img src="./images/ffmpeg-9.png" alt="ffmpeg"></a>
+</details>
 
-[![ffmpeg](/images/ffmpeg-command-1.png)](https://ffmpeg.org/download.html)
+<br>
+
+<div align="center">
+    <a href="https://ffmpeg.org/download.html">
+        <img src="./images/ffmpeg-command-1.png" alt="ffmpeg">
+    </a>
+</div>
 
 2. Полностью помещает картинку в масштабе 512 на 512 пикселей.
 
@@ -116,7 +175,11 @@ ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 
 ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 2.99 -vf scale=512:512:force_original_aspect_ratio=decrease -an output.webm
 ```
 
-[![ffmpeg](/images/ffmpeg-command-2.png)](https://ffmpeg.org/download.html)
+<div align="center">
+    <a href="https://ffmpeg.org/download.html">
+        <img src="./images/ffmpeg-command-2.png" alt="ffmpeg">
+    </a>
+</div>
 
 3. Сжимает картинку в масштабе 512 на 512 пикселей.
 
@@ -124,7 +187,11 @@ ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 
 ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 2.99 -vf scale=512:512,setsar=1 -an output.webm
 ```
 
-[![ffmpeg](/images/ffmpeg-command-3.png)](https://ffmpeg.org/download.html)
+<div align="center">
+    <a href="https://ffmpeg.org/download.html">
+        <img src="./images/ffmpeg-command-3.png" alt="ffmpeg">
+    </a>
+</div>
 
 Результат будет сохранён в той директории, в которой Вы находитесь в терминале (если, конечно, Вы ручками сами не впишите путь до output.webm).
 
@@ -136,6 +203,7 @@ ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 
 
 -   [@toWebmBot](https://t.me/toWebmBot) — мой бот, конвертирует Ваше видео в видеостикер и автоматически создаёт стикер-пак, добавляя его туда.
 -   [@fStikBot](https://t.me/fStikBot) — многофункциональный бот, также умеет конвертировать в видеостикер. Больше опций по управлению Вашими стикер-паками.
+-   [@converterSticker_bot](https://t.me/converterSticker_bot) — конвертирует Ваше видео в файл .WEBM
 -   [@VideoToStickerBot](https://t.me/VideoToStickerBot) — также создаёт стикер пак. Есть возможность выбрать начало и конец Вашего видеостикера, если Вы используете длинное видео.
 -   [@AnimatedStickersRoBot](https://t.me/AnimatedStickersRoBot) — конвертирует в видеостикер, создаёт стикер-пак.
 -   [@VideoStickerXBot](https://t.me/VideoStickerXBot) — конвертирует в видеостикер, создаёт стикер-пак, есть возможность извлечь .WEBM в виде документа.
@@ -144,7 +212,11 @@ ffmpeg -i input.mp4 -c:v libvpx-vp9 -pix_fmt yuva420p -b:a 256k -c:a libopus -t 
 
 Если Вам всё-таки удалось конвертировать нужный видеофайл в .WEBM со всеми обязательными параметрами, или же у Вас уже был таковой файл, Вам нужно создать набор стикеров. Для этого запустите официального бота [@Stickers](https://t.me/stickers) и отправьте ему команду `/newvideo`. Далее проследуйте инструкциям, которые Вам будет присылать бот. По-сути, Вам просто нужно будет дать название набору, его короткую ссылку, добавить туда нужные .WEBM файлы и сохранить.
 
-[![stickers-bot](/images/stickers-bot.png)](https://t.me/stickers)
+<div align="center">
+    <a href="https://t.me/stickers">
+        <img src="./images/stickers-bot.png" alt="stickers-bot">
+    </a>
+</div>
 
 # Заключение
 
